@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.learing.R
 
@@ -26,9 +27,12 @@ class MainActivity : AppCompatActivity() {
         val btn=findViewById<Button>(R.id.button2)
         val textView=findViewById<TextView>(R.id.textView)
         textView.text=viewModel.number.toString()
+        viewModel.number.observe(this, Observer {
+            textView.text=it.toString()
+        })
         btn.setOnClickListener{
           viewModel.addNumber()
-            textView.text=viewModel.number.toString()
+//            textView.text=viewModel.number.toString()
         }
 
     }
